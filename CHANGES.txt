@@ -1,7 +1,9 @@
-trunk
+0.1.4
 -----
 
--   Adding a guard to fail properly if the field is not found.
+-   Added a guard to fail properly if the field is not found.
+-   Added steps to found element with class (same as id).
+-   Updated README (Source and wiki pages, requirement).
 
 0.1.3
 -----

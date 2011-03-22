@@ -9,11 +9,23 @@ the `selenium 2.0b2 Python package <http://pypi.python.org/pypi/selenium>`_.
 The included matchers and syntax is inspired heavily by `cucumber_watir
 <https://github.com/napcs/cucumber_watir>`_.
 
+Source
+======
+
+The source code is available on `Github
+<https://github.com/bbangert/lettuce_webdriver>`_.
+
+Bug Tracker
+===========
+
+* `Bug Tracker https://github.com/bbangert/lettuce_webdriver/issues`_
+
 Requirements
 ============
 
 * `lettuce <http://lettuce.it/>`_
 * `selenium 2.0b2 <http://pypi.python.org/pypi/selenium>`_
+* `nose http://code.google.com/p/python-nose/`_
 
 Setting Up lettuce_webdriver
 ============================
@@ -78,6 +90,8 @@ used with Given/When/Then/And as desired.
     I should not see an element with id of "http://bar.com/"
     The element with id of "cs_PageModeContainer" contains "Read"
     The element with id of "cs_BigDiv" does not contain "Write"
+    The element with class of "cs_PageModeContainer" contains "Read"
+    The element with class of "cs_BigDiv" does not contain "Write"
 
     # browser
     The browser's URL should be "http://bar.com/"

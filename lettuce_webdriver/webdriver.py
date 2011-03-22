@@ -90,6 +90,26 @@ def should_see_id(step, element_id, timeout):
     assert_true(elem.is_displayed())
 
 
+@step('The element with class of "(.*?)" contains "(.*?)"')
+def element_contains(step, element_class, value):
+    return world.browser.find_element_by_xpath('//*[@class="%s"][contains(., "%s")]' %
+        (element_class, value))
+
+
+@step('The element with class of "(.*?)" does not contain "(.*?)"')
+def element_contains(step, element_class, value):
+    elem = world.browser.find_element_by_xpath('//*[@class="%s"]' % element_class)
+    assert_true(value not in elem.text)
+
+
+@step('I should see an element with class of "(.*?)" within (\d+) seconds?')
+def should_see_class(step, element_class, timeout):
+    elem = wait_for_elem(world.browser, '//*[@class="%s"]' % element_class, int(timeout))
+    assert_true(elem)
+    elem = elem[0]
+    assert_true(elem.is_displayed())
+
+
 @step('I should see an element with id of "(.*?)"')
 def should_see_id(step, element_id):
     elem = world.browser.find_element_by_xpath('//*[@id="%s"]' % element_id)
@@ -99,6 +119,18 @@ def should_see_id(step, element_id):
 @step('I should not see an element with id of "(.*?)"')
 def should_see_id(step, element_id):
     elem = world.browser.find_element_by_xpath('//*[@id="%s"]' % element_id)
+    assert_true(not elem.is_displayed())
+
+
+@step('I should see an element with class of "(.*?)"')
+def should_see_class(step, element_class):
+    elem = world.browser.find_element_by_xpath('//*[@class="%s"]' % element_class)
+    assert_true(elem.is_displayed())
+
+
+@step('I should not see an element with class of "(.*?)"')
+def should_see_class(step, element_class):
+    elem = world.browser.find_element_by_xpath('//*[@class="%s"]' % element_class)
     assert_true(not elem.is_displayed())
 
 

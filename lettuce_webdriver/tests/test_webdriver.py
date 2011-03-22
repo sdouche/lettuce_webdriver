@@ -145,6 +145,16 @@ Feature: Basic page formstuff
 """ % {'page': PAGES['basic_page']}
 
 
+FEATURE14 = """
+Feature: Basic page formstuff
+    Scenario: Everything fires up
+        When I go to "%(page)s"
+        Then I should see a form that goes to "basic_page.html"
+        And The element with class of "classdiv" contains "I'm back"
+        And The element with class of "classdiv" does not contain "bye"
+""" % {'page': PAGES['basic_page']}
+
+
 class TestUtil(unittest.TestCase):
     def setUp(self):
         # Go to an empty page
@@ -240,3 +250,11 @@ class TestUtil(unittest.TestCase):
         feature_result = f.run()
         scenario_result = feature_result.scenario_results[0]
         self.assertEquals(len(scenario_result.steps_passed), 2)
+
+    def test_feature14(self):
+        import lettuce_webdriver.webdriver
+        f = Feature.from_string(FEATURE14)
+        feature_result = f.run()
+        scenario_result = feature_result.scenario_results[0]
+        self.assertEquals(len(scenario_result.steps_passed), 4)
+
